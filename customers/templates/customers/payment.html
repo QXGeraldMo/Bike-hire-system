@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pay</title>
+
+  <style>
+
+        .all{
+         position : absolute;
+         width : 100%;
+         height : 100%;
+         background: url("/static/img/1.jpeg");
+         background-size: 100% 100%;
+
+          }
+          *{
+          margin : 0;
+          padding : 0;
+          }
+          .dh{
+
+          font-size:20px;
+          text-align:center;
+          }
+          a{
+         text-decoration:none;
+         }
+         .payment{
+         width:500px;
+         height:400px;
+         border:2px solid #BABABA;
+         background-color:white;
+         }
+
+    </style>
+</head>
+<body>
+<div class="all">
+    <div class="daohang" style="position:relative; margin:40px 10px 20px ;border:3px solid #BABABA;
+    background-color:  #666666;width : 200px; height : 90%;">
+        <div class="daofont" >
+            <h1 style="font-size:40px;color:white; left:20%; position: absolute; top:5%;">MENU</h1>
+        <table class="dh" style="position: absolute;top:40%;left:50%;transform:translate(-50%,-50%)">
+            <thead></thead>
+            <tbody>
+            <tr><td><a href="{% url 'index' %}" style="color:white;">MAIN PAGE</a></td></tr>
+                <tr style="height:50px;"></tr>
+                <tr><td><a href="#"style="color:white;">Back</a></td></tr>
+                <tr style="height:50px;"></tr>
+                <tr><td><a href="{% url 'logout' %}"style="color:white;">Logout</a></td></tr>
+                <tr style="height:50px;"></tr>
+                <tr><td><a href="#"style="color:white;">ABOUT US</a></td></tr>
+            </tbody>
+
+        </table>
+        </div>
+
+    </div>
+    <div class="payment" style="left:40%; top: 20%;position: absolute;">
+        <form method="post">
+            {% csrf_token %}
+            <br>
+            <span style="color:#333333; font-size:35px;">Total amount: {{ total_price }}£</span>
+            <img src="/static/img/2.png" style="width:100px;height:80px;position: absolute;left:78%;top:3%;">
+            <br>
+            <br><br>
+            <span style="color:#BABABA;font-size:20px;">CARD NUMBER</span>
+            <input style="width : 300px;height : 50px; border:2px solid #BABABA;font-size: 30px" type="text" name="card_number"/>
+            <br>
+            <br>
+            <br>
+            <br>
+            <span style="color:#BABABA;position: absolute;top: 57%;font-size:20px; ">EXPIRY</span>
+            <input style="width :100px;height : 50px; border:2px solid #BABABA;position:absolute;left: 15%;font-size: 35px" type="text" name="ex"/>
+
+            <span style="color:#BABABA;font-size:20px; position: absolute;left: 50%;top: 57%">CVV</span>
+            <input style="width : 100px;height : 50px; border:2px solid #BABABA;position:absolute;left: 60%; font-size: 35px" type="text" name="cvv"/>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button style="color: #8B8386; font-size:20px;width : 150px;height : 35px; position: absolute;left:35%;top:85%">Make Payment</button>
+            <div>
+
+            </div>
+
+        </form>
+  </div>
+</div>
+
+<div class="eb2" style="left:40%; position: absolute; top:70%;">
+      <span style="font-size:30px;color:white;">
+          {% for message in messages %}
+                <h3></h3>
+                <h4 style="color: white" id="messages">{{ message }}</h4>
+          {% endfor %}
+      </span>
+</div>
+
+
+
+
+</body>
+</html>

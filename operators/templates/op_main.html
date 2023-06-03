@@ -1,0 +1,79 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Operators Main Page</title>
+    <style>
+
+        .body{
+         position : absolute;
+         width : 100%;
+         height : 100%;
+         }
+
+          *{
+          margin : 0;
+          padding : 0;
+          }
+
+          .dh{
+          font-size:20px;
+          text-align:center;
+          }
+
+          a{
+         text-decoration:none;
+         }
+
+         .eb1{
+         width : 700px;
+         height : 350px;
+         background-color:white;
+         border:3px solid #BABABA;
+         }
+
+    </style>
+</head>
+
+
+<body style="background-image: url({% static 'img/bac.png' %});background-size:100% 150%;" >
+<div class="all">
+    <div class="daohang" style="position:relative; margin:40px 10px 20px ;border:3px solid #BABABA;
+    background-color:  #666666;width : 200px; height : 90%;">
+        <div class="daofont" >
+            <h1 style="font-size:40px;color:white; left:20%; position: absolute; top:5%;">MENU</h1>
+        <table class="dh" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%">
+            <thead></thead>
+            <tbody>
+            <tr><td><a href="{% url 'operators' %}" style="color:white;">MAIN PAGE</a></td></tr>
+            <tr style="height:50px;"></tr>
+            <tr><td><a href="{% url 'track' %}" style="color:white;">TRACK</a></td></tr>
+            <tr style="height:50px;"></tr>
+            <tr><td><a href="{% url 'charge' %}" style="color:white;">CHARGE</a></td></tr>
+            <tr style="height:50px;"></tr>
+            <tr><td><a href="{% url 'repair' %}" style="color:white;">REPAIR</a></td></tr>
+            <tr style="height:50px;"></tr>
+            <tr><td><a href="{% url 'move' %}" style="color:white;">MOVE</a></td></tr>
+            <tr style="height:50px;"></tr>
+            <tr><td><a href="{% url 'logoutOperator' %}" style="color:white;">Logout</a></td></tr>
+            </tbody>
+
+        </table>
+        </div>
+    </div>
+
+
+
+    <div class="eb1" style="left:30%; position: absolute; top:15%;">
+        {{map|safe }}
+  </div>
+
+
+
+</div>
+
+</body>
+</html>

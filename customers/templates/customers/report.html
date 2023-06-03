@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maintenance</title>
+    <style>
+
+        .all{
+         position : absolute;
+         width : 100%;
+         height : 100%;
+         background: url("/static/img/1.jpeg");
+         background-size: 100% 100%;
+
+          }
+          *{
+          margin : 0;
+          padding : 0;
+          }
+          .dh{
+
+          font-size:20px;
+          text-align:center;
+          }
+          a{
+         text-decoration:none;
+         }
+         .eb1{
+         width : 700px;
+         height : 350px;
+         background-color:white;
+         border:3px solid #BABABA;
+         }
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="all">
+    <div class="daohang" style="position:relative; margin:40px 10px 20px ;border:3px solid #BABABA;
+    background-color:  #666666;width : 200px; height : 90%;">
+        <div class="daofont" >
+            <h1 style="font-size:40px;color:white; left:20%; position: absolute; top:5%;">MENU</h1>
+        <table class="dh" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+            <thead></thead>
+            <tbody>
+            <tr><td><a href="" style="color:white;">MAIN PAGE</a></td></tr>
+            <tr style="height:50px;"></tr>
+            <tr><td><a href="#"style="color:white;">MY ORDERS</a></td></tr>
+           <tr style="height:50px;"></tr>
+            <tr><td><a href="/cu/main"style="color:white;">MAINTENANCE</a></td></tr>
+             <tr style="height:50px;"></tr>
+            <tr><td><a href="#"style="color:white;">ABOUT US</a></td></tr>
+            </tbody>
+
+        </table>
+        </div>
+
+    </div>
+
+    <img src="/static/img/3.jpg" style="width:700px;height:300px;position:absolute;left:37%;top:15%;">
+    <span style="color:white; font-size:40px;position:absolute; left:30%;top:60%">Bike defects have been recorded, thanks for using.</span>
+    <form method="POST">
+        {% csrf_token %}
+        <button style="color: black; font-size:30px;width : 200px;height : 50px; position: absolute;left:50%;top:75%;" >BACK</button>
+    </form>
+
+</div>
+
+</body>
+</html>

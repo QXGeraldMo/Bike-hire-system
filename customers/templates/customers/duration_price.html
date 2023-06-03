@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hire electric bike</title>
+  <style>
+
+        .all{
+         position : absolute;
+         width : 100%;
+         height : 100%;
+         background: url("/static/img/1.jpeg");
+         background-size: 100% 100%;
+
+          }
+          *{
+          margin : 0;
+          padding : 0;
+          }
+          .dh{
+
+          font-size:20px;
+          text-align:center;
+          }
+          a{
+         text-decoration:none;
+         }
+         .eb1{
+         width : 800px;
+         height : 480px;
+         background-color:white;
+         border:3px solid #BABABA;
+         }
+
+
+    </style>
+</head>
+<body>
+<div class="all">
+    <div class="daohang" style="position:relative; margin:40px 10px 20px ;border:3px solid #BABABA;
+    background-color:  #666666;width : 200px; height : 90%;">
+        <div class="daofont" >
+            <h1 style="font-size:40px;color:white; left:20%; position: absolute; top:5%;">MENU</h1>
+        <table class="dh" style="position: absolute;top:40%;left:50%;transform:translate(-50%,-50%)">
+            <thead></thead>
+            <tbody>
+            <tr><td><a href="{% url 'index' %}" style="color:white;">MAIN PAGE</a></td></tr>
+                <tr style="height:50px;"></tr>
+                <tr><td><a href="{% url 'show_all_vehicles' %}"style="color:white;">Hire Bike</a></td></tr>
+                <tr style="height:50px;"></tr>
+                <tr><td><a href="{% url 'logout' %}"style="color:white;">Logout</a></td></tr>
+                <tr style="height:50px;"></tr>
+                <tr><td><a href="#"style="color:white;">ABOUT US</a></td></tr>
+            </tbody>
+
+        </table>
+        </div>
+
+    </div>
+  <div class="eb1" style="left:30%; position: absolute; top:10%;">
+    {{ m2|safe }}
+  </div>
+  <div class="eb2" style="left:35%; position: absolute; top:70%;">
+      <span style="font-size:30px;color:white;">
+          <h4>Thanks for using the bike share system.</h4>
+          <h4>Duration : {{ duration }}</h4>
+           <h4>State of charge : {{ SOC }}</h4>
+          <h4>You need to pay {{ total_price }} £</h4> <br>
+
+      </span>
+      <form method="POST">
+          {% csrf_token %}
+          <button style="color: Black; font-size:30px;width : 170px;height : 50px; position: absolute;left:40%"> Pay </button>
+      </form>
+  </div>
+</div>
+
+
+</body>
+</html>

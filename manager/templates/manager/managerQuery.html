@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+
+        body{
+            background-image: url("/static/img/managerQuery.png");
+            background-size: cover;
+        }
+
+        .panel-info{
+            background: rgba(230,230,250, 0.6)!important;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Welcome Manager!</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav"></ul>
+{#                <button type="submit" class="btn btn-success" value="Query">Query</button>#}
+{#                <button type="submit" class="btn btn-success" value="Visualize">Visulize</button>#}
+{#                <a href="{% url 'visulization' %}">#}
+{#                    <button type="submit" class="btn btn-success" value="Visualize">Visulize</button>#}
+{#                </a>#}
+{#                <li><a href="#">Hello manager!</a></li>#}
+{#                <a href="{% url 'managerlogout' %}">Logout</a>#}
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <a href="{% url 'managerlogout' %}">
+                    <button type="submit" class="btn btn-success" value="Visualize">logout</button>
+                </a>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">Please enter the query time</div>
+        <div class="panel-body">
+            <form class="form-inline" action="./makequery" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputTime1">time</label>
+                    <input type="datetime-local" class="form-control" id="exampleInputTime1" placeholder="time" value="{{ form.start }}">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputTime2">time</label>
+                    <input type="datetime-local" class="form-control" id="exampleInputTime2" placeholder="time" value="{{ form.end }}">
+                </div>
+                <button type="submit" class="btn btn-success" value="Query">SEARCH</button>
+{#                <a href="{% url 'makequery' %}">SEARCH</a>#}
+{#                <a href="{% url 'makequery' %}">#}
+{#                <button type="submit" class="btn btn-success" value="Visualize">clear</button>#}
+{#                </a>#}
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">orders in defined time period
+            <a href="{% url 'makequery' %}">
+                <button type="submit" class="btn btn-success" value="Visualize">clear</button>
+            </a>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>order_id</th>
+                <th>v_id</th>
+                <th>u_id</th>
+                <th>start_time</th>
+                <th>end_time</th>
+                <th>duration</th>
+                <th>departure</th>
+                <th>destination</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% csrf_token %}
+
+            {% for item in pages %}
+            <tr>
+                <th scope="row">{{ item.order_id }}</th>
+                <td>{{ item.v_id }}</td>
+                <td>{{ item.customer }}</td>
+                <td>{{ item.start }}</td>
+                <td>{{ item.end }}</td>
+                <td>{{ item.duration }}</td>
+                <td>{{ item.departure }}</td>
+                <td>{{ item.destination }}</td>
+
+{#                <td>#}
+{#                    <a class="btn btn-primary btn-xs">modify</a>#}
+{#                    <a class="btn btn-danger btn-xs">delete</a>#}
+{#                </td>#}
+            </tr>
+            {% endfor %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if pages.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ pages.previous_page_number }}">previous</a>
+                    {% endif %}
+                <span class="current">
+                Page {{ pages.number }} of {{ pages.paginator.num_pages }}.
+                </span>
+                {% if pages.has_next %}
+                <a href="?page={{ pages.next_page_number }}">next</a>
+                <a href="?page={{ pages.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+                </span>
+            </div>
+
+            </tbody>
+
+{#        <nav class="pagination">#}
+{#            <ul>#}
+{#                {% if pages.has_previous %}#}
+{#                <li class="next-page"><a href="?p={{ page.previous_page_number }}">previous</a></li>#}
+{#                {% endif %}#}
+{#            <li class="prev-page"></li>#}
+{#            {% for page in pages.paginator.page_range %}#}
+{#            {% if pages.number == page %}#}
+{#            <li class="active"><span>{{ page }}</span></li>#}
+{#            {% elif pages.number|add:'-1' == page or pages.number|add:'1' == page %}#}
+{#            <li><a href="?p={{ page }}">{{ page }}</a></li>#}
+{#            {% endif %}#}
+{#            {% endfor %}#}
+{#            {% if pages.has_next %}#}
+{#            <li class="next-page"><a href="?p={{ page.next_page_number }}">next</a></li>#}
+{#            {% endif %}#}
+{#            </ul>#}
+{#        </nav>#}
+        </table>
+
+    </div>
+{#    <ul class="pagination">#}
+{#        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>#}
+{#        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>#}
+{#        <li><a href="#">2</a></li>#}
+{#        <li><a href="#">3</a></li>#}
+{#        <li><a href="#">4</a></li>#}
+{#        <li><a href="#">5</a></li>#}
+{#        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>#}
+{#    </ul>#}
+
+{#    <div class="panel panel-default">#}
+{#        <a href="{% url 'makequery' %}">#}
+{#            <button type="submit" class="btn btn-success" value="Visualize">clear</button>#}
+{#        </a>#}
+{#    </div>#}
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Departure-Frequency</div>
+        <div class="panel-body">
+            <form action="/manager/visualization/view_1" method="GET">
+            {% csrf_token %}
+                {% autoescape off %}
+                {{ plot_div1 }}
+                {% endautoescape %}
+            <button type="submit" class="btn btn-success" value="Generate">Generate</button>
+                <p>
+
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Destination-Frequency</div>
+        <div class="panel-body">
+            <form action="/manager/visualization/view_2" method="GET">
+            {% csrf_token %}
+                {% autoescape off %}
+                {{ plot_div2 }}
+                {% endautoescape %}
+            <button type="submit" class="btn btn-success" value="Generate">Generate</button>
+                <p>
+
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Time-Frequency</div>
+        <div class="panel-body">
+            <form action="/manager/visualization/view_3" method="GET">
+            {% csrf_token %}
+                {% autoescape off %}
+                {{ plot_div3 }}
+                {% endautoescape %}
+            <button type="submit" class="btn btn-success" value="Generate">Generate</button>
+                <p>
+
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Number of Vehicle available</div>
+        <div class="panel-body">
+            <form action="/manager/visualization/view_4" method="GET">
+            {% csrf_token %}
+                {% autoescape off %}
+                {{ plot_div4 }}
+                {% endautoescape %}
+            <button type="submit" class="btn btn-success" value="Generate">Generate</button>
+                <p>
+
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Vehicle Battery Current Status</div>
+        <div class="panel-body">
+            <form action="/manager/visualization/view_5" method="GET">
+            {% csrf_token %}
+                {% autoescape off %}
+                {{ plot_div5 }}
+                {% endautoescape %}
+            <button type="submit" class="btn btn-success" value="Generate">Generate</button>
+                <p>
+
+                </p>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

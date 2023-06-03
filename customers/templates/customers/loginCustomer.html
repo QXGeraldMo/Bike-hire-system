@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+    <style>
+        body{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background-image: url("/static/img/login.jpg");
+            background-size: cover;
+        }
+        .account {
+            width: 400px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            box-shadow: 5px 5px 20px #aaa;
+            background-color: #dcdcdc;
+
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            padding: 20px 40px;
+        }
+
+        .account h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="account">
+    <h2>Welcome customer</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input type="text" name = "username" class="form-control" id="Username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" name = "password" class="form-control" id="Password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="id_code">verify</label>
+            <div class="row">
+                <div class="col-xs-7">
+                    <input type="text" name="code" class="form-control" placeholder="please enter the code" required="" id="id_code">
+                    <span style="color: red;"></span>
+                </div>
+                <div class="col-xs-5">
+                     <img id="image-code" src="/image/code/" style="width: 125px;">
+                </div>
+            </div>
+        </div>
+
+        {% for message in messages %}
+                    <p id="messages">{{ message }}</p>
+        {% endfor %}
+
+        <input type="submit" value="log in" class="btn btn-primary">
+        <a class="btn btn-default" href="{% url 'register' %}" role="button">register</a>
+    </form>
+</div>
+</body>
+</html>

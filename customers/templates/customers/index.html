@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size: 100px;">
+
+<head>
+  <meta charset="utf-8">
+  <title>GoodBikeHire</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <link rel="shortcut icon" href="/static/static1/img/goodbikehire.png">
+<!--  <link rel="bookmark" href="https://m.hellobike.com/resource/helloyun/12399/QnmFa_favicon.png">-->
+  <link rel="stylesheet" href="/static/static1/css/index.css">
+  <link rel="stylesheet" href="/static/static1/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/static1/css/swiper.min.css">
+  <script type="text/javascript">
+    function getPath() {
+      var path = location.pathname.split('/').filter(function (v) { return v })
+      if (path.indexOf('m') + 1) {
+        return '/' + path.filter(function (v) { return v !== 'm' }).join('/') + location.search
+      }
+      if (path.length === 0) {
+        return '/m/index.html' + location.search
+      }
+      path[path.length - 1] = 'm/' + path[path.length - 1] || ''
+      return '/' + path.join('/') + location.search
+    }
+
+  </script>
+</head>
+<link rel="stylesheet" href="/static/static1/css/bootstrap.css">
+
+<body>
+  <header id="header" class="header fixed shadow">
+    <div class="header__container">
+      <div class="header-logo-container"><a href="{% url 'index' %}"><img id="logo" class="header__logo"
+            src="/static/static1/img/goodbikehire.png" alt="GoodBikeHire"></a></div>
+      <ul class="header__menu">
+        <li class="header__menu-item"><a href="http://127.0.0.1:8000/loginoperator" class="hover-target">Staff</a></li>
+        <li class="header__menu-item"><a href="{% url 'login' %}" class="hover-target">Log in</a></li>
+        <li class="header__menu-item"><a href="{% url 'managerlogin' %}" class="hover-target">Manager</a></li>
+        <li class="header__menu-item"><a href="#" class="hover-target">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  <!--<div class="page__title index">
+    <div class="content">
+      <div class="slogan"><span></span> <span></span></div>
+    </div>
+  </div>-->
+  <div style="clear: both; background: white;">
+    <div class="index__body">
+      <div id="carousel1" class="index_position carousel" data-ride="carousel">
+        <!-- Create indicator dots -->
+        <!-- 'data-target' to determine which carousel to control -->
+        <!-- 'data-slide-to' is the number 0 of the first picture -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel1" data-slide-to="1"></li>
+          <li data-target="#carousel1" data-slide-to="2"></li>
+<!--          <li data-target="#carousel1" data-slide-to="3"></li>-->
+        </ol>
+        <div class="carousel-inner">
+          <!-- the first image -->
+          <!-- 'active' rotate to that picture to display the style -->
+          <div class="carousel-item active">
+            <img src="/static/static1/img/slide_page_2.jpg" class="w-100" alt="">
+          </div>
+          <!-- the second image -->
+          <div class="carousel-item">
+            <img src="/static/static1/img/slide_page_1.jpg" class="w-100" alt="">
+          </div>
+          <!-- the third image -->
+          <div class="carousel-item">
+            <img src="/static/static1/img/slide_page_3.jpg" class="w-100" alt="">
+          </div>
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-target="#carousel1" data-slide="prev"
+          style="background-color: transparent;border: 0;">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carousel1" data-slide="next"
+          style="background-color: transparent;border: 0;">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <section class="index__intro">
+        <div class="index__intro--main">
+          <div class="video-preview preview">
+<!--            <img class="preview-image" src="img/index-intro-preview.png" alt="play"> <img class="play-icon"-->
+<!--              src="img/index-play-icon.png" alt="">-->
+            <span>
+              Flexible
+              Convenient
+              Economical
+            </span>
+          </div>
+          <div class="intro-text"><span class="intro-title">GoodBikeHire</span>
+            <span class="intro-body">GoodBikeHire provides shared bicycle rentals in Glasgow,
+              simplifies people's travel mode, applies the dividends of digital technology,
+              and provides people with more convenient travel and better inclusive life services.
+            </span>
+            <br>
+            <span class="button_position">
+                    <a href="{% url 'register' %}" class="button">
+                Join us
+            </a>
+                </span>
+          </div>
+        </div>
+      </section>
+      <section class="index__business">
+        <div class="index__business--main">
+          <div class="index__business-body">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide swiper-slide-type-1">
+                  <div class="slide-item slide-item-width"><img src="/static/static1/img/first_bike.png" alt="" class="slide-item-img"> <span
+                      class="slide-item-title">Sharing Bike</span> <span
+                      class="slide-item-desc"><span>Technology leads the evolution of bicycle travel, continues to iterate a good riding experience, and promotes the popularization of green and low-carbon travel</span> <span></span>
+                      <span></span></span></div>
+                  <div class="slide-item slide-item-width"><img src="/static/static1/img/first_scooter.png" alt="" class="slide-item-img"> <span
+                      class="slide-item-title">Sharing Scooter</span> <span
+                      class="slide-item-desc"><span>Match travel supply and demand with more refined appearance and portable size, stylish and fast</span> <span></span>
+                      <span></span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="content">
+      <div class="logo__wrapper">
+<!--        <img class="logo" src="img/QgoaP_header__logo&#45;&#45;colored.png" alt="Hellobike">-->
+        <div class="tel">
+          <p>PSD-LC02-LB03-B</p>
+        </div>
+      </div>
+      <div class="footer-columns">
+        <div class="know footer-column">
+          <h3 class="footer_context">Base Information</h3>
+          <p class="context"><a href="#">Bike</a></p>
+          <p class="context"><a href="#">Scooter</a></p>
+        </div>
+        <div class="about footer-column">
+          <h3>About us</h3>
+          <p class="context"><a href="#">Introduction</a></p>
+          <p class="context"><a href="#">Leader Team</a></p>
+<!--          <p class="context">Acquire</p>-->
+        </div>
+        <div class="join footer-column">
+          <h3 class="footer_context">CONTACTS</h3>
+          <p class="context"><a href="{% url 'register' %}">Join us</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $('.carousel').carousel({
+      interval: 2000
+    })
+  </script>
+  <script src="/static/static1/js/jquery.min.js"></script>
+  <script src="/static/static1/js/bootstrap.js"></script>
+</body>
+
+</html>
