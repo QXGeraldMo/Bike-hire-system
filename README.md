@@ -16,7 +16,7 @@ Operator
 username:charles
 password:test123456
 
-Customer(or you can register by yourself)
+Customer(or you can register one by yourself)
 username:gerald
 password:mqx927@@
 ```
